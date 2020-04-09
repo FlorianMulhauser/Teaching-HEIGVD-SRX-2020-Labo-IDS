@@ -355,7 +355,7 @@ Aller à un site web contenant dans son text votre nom ou votre mot clé que vou
 **Question 5: Que voyez-vous sur votre terminal quand vous visitez le site ?**
 
 ---
-![](screenshots/Q4.3.png)
+> ![](screenshots/Q4.3.png)
 
 **Reponse :**  
 > Nous voyons plein de `WARNING: No preprocessor configured for policy 0`, c'est parce qu'on n'a pas de préprocesseurs. Cependant rien de supplémentaire, nous auront plus de détails à l'arrêt de snort.
@@ -371,10 +371,8 @@ Arrêter Snort avec `CTRL-C`.
 
 > On a ensuite un résumé sur pleins de stats des paquets: leur nombre et taille en mémoire, leurs états I/O(reçus, filtrés, analysés, rejeté, etc), leurs protocoles. Enfin un résumé des stats de ce que la règle a fait (nombre d'alert, de log, des choses bloquées ou non etc).
 
-
-
-![](screenshots/Q4.4.png)
-![](screenshots/Q4.5.png)
+> ![](screenshots/Q4.4.png)
+> ![](screenshots/Q4.5.png)
 ---
 
 
