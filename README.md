@@ -507,7 +507,7 @@ Essayer d'écrire une règle qui Alerte qu'une tentative de session SSH a été 
 ---
 
 **Reponse :**  
-> n/a 
+> n/a
 ---
 
 --
@@ -611,7 +611,7 @@ Modifier le fichier `myrules.rules` pour que snort utiliser le `Frag3 Preprocess
 ---
 
 **Reponse :**  
-> Il sert à analyser les parties non-chiffrées de SSL/TLS. 
+> Il sert à analyser les parties non-chiffrées de SSL/TLS.
 
 ---
 
@@ -637,7 +637,7 @@ Modifier le fichier `myrules.rules` pour que snort utiliser le `Frag3 Preprocess
 
 
 ### Annexe Important
-Lors de la réalisation de ce labo nous avons rencontré de nombreux problèmes techniques, tout d'abord avec la VM, puis avec l'outil snort, ce qui a considérablement réduit notre motivation. Plutôt que de nous entêter sur des problèmes que nous n'arrivions pas à régler nous avons décider de nous aider des ressources en ligne du mieux possible pour donner des réponses théoriques et comprendre le fonctionnement et la logique de l'outil présenté. Nous n'avons cependant pu réaliser que très peu de manipulations en elle-mêmes à cause de ces problèmes, voila pourquoi il nous manque de nombreuses captures d'écrans dans ce README. En espérant que les labos suivant se déroulerons mieux pour nous. Merci de votre attention.
+Lors de la réalisation de ce labo nous avons rencontré de nombreux problèmes techniques, tout d'abord avec la VM, puis avec la configuration réseau et l'outil snort, ce qui a considérablement réduit notre motivation et notre capacité à avancer. Plutôt que de nous entêter sur des problèmes que nous n'arrivions pas à régler nous avons décider de nous aider des ressources en ligne du mieux possible pour donner des réponses théoriques et comprendre le fonctionnement et la logique de l'outil snort présenté. Nous n'avons cependant pu tester que très peu de manipulations en elle-mêmes à cause de ces problèmes, voila pourquoi il nous manque de nombreuses captures d'écrans dans ce README. En espérant que les labos suivant se déroulerons mieux pour nous. Merci de votre attention.
 
 
 <sub>This guide draws heavily on http://cs.mvnu.edu/twiki/bin/view/Main/CisLab82014</sub>
