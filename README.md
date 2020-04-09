@@ -27,7 +27,7 @@ Clonez le repo sur votre machine. Vous pouvez répondre aux questions en modifia
 [Travail à effectuer](#exercises)
 
 
-## Echéance 
+## Echéance
 
 Ce travail devra être rendu le dimanche après la fin de la 2ème séance de laboratoire, soit au plus tard, **le 6 avril 2020, à 23h59.**
 
@@ -44,9 +44,9 @@ Un exemple de règle pourrait être, en language commun : "donner une alerte pou
 
 Snort est un IDS très puissant. Il est gratuit pour l'utilisation personnelle et en entreprise, où il est très utilisé aussi pour la simple raison qu'il est l'un des plus efficaces systèmes IDS.
 
-Snort peut être exécuté comme un logiciel indépendant sur une machine ou comme un service qui tourne après chaque démarrage. Si vous voulez qu'il protège votre réseau, fonctionnant comme un IPS, il faudra l'installer "in-line" avec votre connexion Internet. 
+Snort peut être exécuté comme un logiciel indépendant sur une machine ou comme un service qui tourne après chaque démarrage. Si vous voulez qu'il protège votre réseau, fonctionnant comme un IPS, il faudra l'installer "in-line" avec votre connexion Internet.
 
-Par exemple, pour une petite entreprise avec un accès Internet avec un modem simple et un switch interconnectant une dizaine d'ordinateurs de bureau, il faudra utiliser une nouvelle machine executant Snort et placée entre le modem et le switch. 
+Par exemple, pour une petite entreprise avec un accès Internet avec un modem simple et un switch interconnectant une dizaine d'ordinateurs de bureau, il faudra utiliser une nouvelle machine executant Snort et placée entre le modem et le switch.
 
 
 ## Matériel
@@ -104,11 +104,11 @@ Pour arrêter Snort, il suffit d'utiliser `CTRL-C` (**attention** : il peut arri
 
 ## Utilisation comme un IDS
 
-Pour enregistrer seulement les alertes et pas tout le trafic, on execute Snort en mode IDS. Il faudra donc spécifier un fichier contenant des règles. 
+Pour enregistrer seulement les alertes et pas tout le trafic, on execute Snort en mode IDS. Il faudra donc spécifier un fichier contenant des règles.
 
 Il faut noter que `/etc/snort/snort.config` contient déjà des références aux fichiers de règles disponibles avec l'installation par défaut. Si on veut tester Snort avec des règles simples, on peut créer un fichier de config personnalisé (par exemple `mysnort.conf`) et importer un seul fichier de règles utilisant la directive "include".
 
-Les fichiers de règles sont normalement stockes dans le repertoire `/etc/snort/rules/`, mais en fait un fichier de config et les fichiers de règles peuvent se trouver dans n'importe quel repertoire. 
+Les fichiers de règles sont normalement stockes dans le repertoire `/etc/snort/rules/`, mais en fait un fichier de config et les fichiers de règles peuvent se trouver dans n'importe quel repertoire.
 
 Par exemple, créez un fichier de config `mysnort.conf` dans le repertoire `/etc/snort` avec le contenu suivant :
 
@@ -126,7 +126,7 @@ On peut maintenant executer la commande :
 snort -c /etc/snort/mysnort.conf
 ```
 
-Vous pouvez maintenant faire quelques pings depuis votre hôte et regarder les résultas dans le fichier d'alertes contenu dans le repertoire `/var/log/snort/`. 
+Vous pouvez maintenant faire quelques pings depuis votre hôte et regarder les résultas dans le fichier d'alertes contenu dans le repertoire `/var/log/snort/`.
 
 
 ## Ecriture de règles
@@ -152,7 +152,7 @@ Cette règle décrit une alerte générée quand Snort trouve un paquet avec tou
 * Emis depuis n'importe quelle adresse et depuis n'importe quel port
 * A destination du réseau identifié par l'adresse 192.168.1.0/24 sur le port 111
 
-Le text jusqu'au premier parenthèse est l'entête de la règle. 
+Le text jusqu'au premier parenthèse est l'entête de la règle.
 
 ```
 alert tcp any any -> 192.168.1.0/24 111
@@ -171,7 +171,7 @@ alert tcp any any -> any 21 (content:"site exec"; content:"%"; msg:"site
 exec buffer overflow attempt";)
 ```
 
-La clé "content" apparait deux fois parce que les deux strings qui doivent être détectés n'apparaissent pas concaténés dans le paquet mais à des endroits différents. Pour que la règle soit déclenchée, il faut que le paquet contienne **les deux strings** "site exec" et "%". 
+La clé "content" apparait deux fois parce que les deux strings qui doivent être détectés n'apparaissent pas concaténés dans le paquet mais à des endroits différents. Pour que la règle soit déclenchée, il faut que le paquet contienne **les deux strings** "site exec" et "%".
 
 Les éléments dans les options d'une règle sont traitées comme un AND logique. La liste complète de règles sont traitées comme une succession de OR.
 
@@ -201,7 +201,7 @@ Le champ suivant c'est le protocole. Il y a trois protocoles IP qui peuvent êtr
 
 ### Adresses IP :
 
-La section suivante traite les adresses IP et les numéros de port. Le mot `any` peut être utilisé pour définir "n'import quelle adresse". On peut utiliser l'adresse d'une seule machine ou un block avec la notation CIDR. 
+La section suivante traite les adresses IP et les numéros de port. Le mot `any` peut être utilisé pour définir "n'import quelle adresse". On peut utiliser l'adresse d'une seule machine ou un block avec la notation CIDR.
 
 Un opérateur de négation peut être appliqué aux adresses IP. Cet opérateur indique à Snort d'identifier toutes les adresses IP sauf celle indiquée. L'opérateur de négation est le `!`.
 
@@ -243,7 +243,7 @@ Journaliser le traffic TCP venant d'un port privilégié (bien connu) plus grand
 
 ### Opérateur de direction
 
-L'opérateur de direction `->`indique l'orientation ou la "direction" du trafique. 
+L'opérateur de direction `->`indique l'orientation ou la "direction" du trafique.
 
 Il y a aussi un opérateur bidirectionnel, indiqué avec le symbole `<>`, utile pour analyser les deux côtés de la conversation. Par exemple un échange telnet :
 
@@ -288,6 +288,8 @@ Vous pouvez aussi utiliser des captures Wireshark ou des fichiers snort.log.xxxx
 
 **Reponse :**  
 
+> Les preprocesseurs ont pour but de préparer les paquets qu'ils examinent pour pouvoir les envoyer au moteur de détection. Il y a deux utilités: analyser pour detecter des activités malicieuses, et l'autre est de modifier les paquets pour qu'ils soient bien interprétés par le moteur de détection.
+
 ---
 
 **Question 2: Pourquoi êtes vous confronté au WARNING suivant `"No preprocessors configured for policy 0"` lorsque vous exécutez la commande `snort` avec un fichier de règles ou de configuration "home-made" ?**
@@ -296,6 +298,7 @@ Vous pouvez aussi utiliser des captures Wireshark ou des fichiers snort.log.xxxx
 
 **Reponse :**  
 
+> Cela vient du fait que snort ne charge pas par défaut le préprocesseur situé dans /etc/snort/snort.conf. De plus nous n'avons pas configuré nous-même un préprocesseur.
 ---
 
 --
@@ -312,6 +315,12 @@ alert tcp any any -> any any (msg:"Mon nom!"; content:"Rubinstein"; sid:4000015;
 
 **Reponse :**  
 
+> Nous allons lister de gauche à droite:
+* `alert` : cette règle, si remplie va retourner une alerte et écrire dans un log.
+* `tcp any any -> any any` : Ça s'applique à tous les paquets TCP sur le réseau (de toutes les IPs et tous les ports)
+* `msg: "Mon nom!"; content:"Rubinstein"` : Va écrire dans le journal "Mon nom !" si la chaine de charactère ASCII (en clair donc) "Rubinstein" est contenue et lisible dans un des paquets.
+
+> Donc si un des paquets TCP passant sur le réseau (toutes IPs, tout ports) contient la chaine "Rubinstein", cela va créer une alerte nomée "Mon nom!" et l'écrit dans le journal.
 ---
 
 Utiliser un éditeur et créer un fichier `myrules.rules` sur votre répertoire home. Rajouter une règle comme celle montrée avant mais avec votre nom ou un mot clé de votre préférence. Lancer snort avec la commande suivante :
@@ -326,6 +335,12 @@ sudo snort -c myrules.rules -i eth0
 
 **Reponse :**  
 
+> On nous affiche le fichier de règles chargés, le directory où sera stocké les logs, les ports utilisés, les patterns matchings.
+
+![](screenshots/Q4.1)
+![](screenshots/Q4.2)
+
+
 ---
 
 Aller à un site web contenant dans son text votre nom ou votre mot clé que vous avez choisi (il faudra chercher un peu pour trouver un site en http...).
@@ -333,9 +348,10 @@ Aller à un site web contenant dans son text votre nom ou votre mot clé que vou
 **Question 5: Que voyez-vous sur votre terminal quand vous visitez le site ?**
 
 ---
+![](screenshots/Q4.3)
 
 **Reponse :**  
-
+> Nous voyons plein de `WARNING: No preprocessor configured for policy 0`, c'est parce qu'on n'a pas de préprocesseurs. On peur également voir que des alertes ont été lancées et loggés dans `/var/log/snort/alert` parce que le site contenait bien notre mot clé.
 ---
 
 Arrêter Snort avec `CTRL-C`.
@@ -346,6 +362,12 @@ Arrêter Snort avec `CTRL-C`.
 
 **Reponse :**  
 
+> On a ensuite un résumé sur pleins de stats des paquets: leur nombre et taille en mémoire, leurs états I/O(reçus, filtrés, analysés, rejeté, etc), leurs protocoles. Enfin un résumé des stats de ce que la règle a fait (nombre d'alert, de log, des choses bloquées ou non etc).
+
+
+
+![](screenshots/Q4.4)
+![](screenshots/Q4.5)
 ---
 
 
@@ -357,6 +379,12 @@ Aller au répertoire /var/log/snort. Ouvrir le fichier `alert`. Vérifier qu'il 
 
 **Reponse :**  
 
+> L'alerte s'écrit enplusieurs lignes, comme suit:
+* on a le SID de la règle et son nom (renseigné à `msg:"Myname"`)
+* On a le niveau de priority de l'alerte, par défaut c'et à 0, comme ici.
+* On a l'heure UNIX de l'alerte, donc date et heure précise jusqu'à la nanosecondes. On nous indique de quel IP:PORT vers quel IP:PORT ça a été envoyés
+*  Ou nous donne ensuite le protocole du paquets ainsi que des renseignements sur les infos du paquets, les longueurs les sécurité. C'est un peu les headers du paquets.
+* en dernier des infos sur les options de TCP
 ---
 
 
@@ -372,6 +400,11 @@ Ecrire une règle qui journalise (sans alerter) un message à chaque fois que Wi
 
 **Reponse :**  
 
+> la règle: `log tcp 192.168.1.42 any -> 91.198.174.192 443 (msg:"Wikipedia visited"; sid:4242424242; rev:2)`
+
+> On obtient les IP de notre poste et de Wikipedia, en effectuant une commande ping vers wikipedia(`ping www.wikipedia.com`). Ensuite on met comme port de destination 443, pour logguer que les visites (TCP handshakes d'https). On met l'option log pour avoir juste les logs mais pas d'alertes.
+
+> Les messages sont journalisés dan le dossier /var/log/snort dans un fichier crée snort.log.xxxxxxxxx avec l'heure Linux.
 ---
 
 --
@@ -386,6 +419,9 @@ Ecrire une règle qui alerte à chaque fois que votre système reçoit un ping d
 
 **Reponse :**  
 
+> La règle est : `alert icmp !192.168.1.42 any -> 192.168.1.42 any (msg:"On me ping"; itype:8; sid: 0000000001; rev:1)`
+
+> On utilise le !IP pour dire qu'on veut avoir en source tout sauf notre IP, qui par contre doit etre la destinataire. Le protocole des pings est ICMP. On indique `itype:8` pour ne pas recevoir des alertes quand une machine réponderais à un ping de notre machine.
 ---
 
 
@@ -395,6 +431,7 @@ Ecrire une règle qui alerte à chaque fois que votre système reçoit un ping d
 
 **Reponse :**  
 
+> On a bien spécifié que ça devait venir de n'importe quel IP (autre que le notre), vers notre IP. De plus avec le itype:8, on précise qu'on ne veut pas etre alertés si une machine réponderais à un ping que notre machine a envoyé.
 ---
 
 
@@ -403,6 +440,8 @@ Ecrire une règle qui alerte à chaque fois que votre système reçoit un ping d
 ---
 
 **Reponse :**  
+
+> Comme indiqué au début du readme, le message est journalisé dans le fichier `/var/log/snort/alert`
 
 ---
 
@@ -413,6 +452,9 @@ Ecrire une règle qui alerte à chaque fois que votre système reçoit un ping d
 
 **Reponse :**  
 
+> On a entre autre dans alert: le sid de la règle, l'heure UNIX enregistrée de la réception du ping, les msg configuré, la priorité d'alerte, les IPs de source et dest .
+
+> dans le snort.log.xxxxxxxxx on a l'heure, les IPS (source et dest), le type de requete donc icmp, et ensuite on a les .pcap qui contiennent les paquets qui ont déclenché la règle et donc l'alerte.
 ---
 
 --
@@ -426,7 +468,10 @@ Modifier votre règle pour que les pings soient détectés dans les deux sens.
 ---
 
 **Reponse :**  
+> On change l'IP de source de !IPsrc à any et l'opérateur -> à <> pour faire dans les deux sens
+`alert icmp any any <> 192.168.1.42 any (msg:"PING"; itype:8; sid: 0000000002; rev:1)`
 
+> il ne faut pas enlever le itype:8, il permet de juste garder les envoie et pas toutes les réponses.
 ---
 
 
@@ -442,10 +487,15 @@ Essayer d'écrire une règle qui Alerte qu'une tentative de session SSH a été 
 
 **Reponse :**  
 
+> On veut detecter les SSH, on sait que ça utilise le port de destination 22, on va donc l'utiliser dans la règle.
+
+`alert tcp any any -> 192.168.1.42 22 (msg:"SSH connexion reçue"; sid: 0000000003; rev:1)`
+
+> On reçoit donc une alert lorsqu'un machine va tneter de se connecter à nous via SSH (donc IPdest c'est le notre et le port c'est 22 car SSH)
 ---
 
 
-**Question 15: Montrer le message d'alerte enregistré dans le fichier d'alertes.** 
+**Question 15: Montrer le message d'alerte enregistré dans le fichier d'alertes.**
 
 ---
 
@@ -465,6 +515,8 @@ Lancer Wireshark et faire une capture du trafic sur l'interface connectée au br
 
 **Reponse :**  
 
+> `snort -r myFilePCAP.pcap` permet d'analyser un fichier pcap ou alors un fichier .log.xxxxxxxxx de la meme manière. Il faut donc l'option `-r`
+
 ---
 
 Utiliser l'option correcte de Snort pour analyser le fichier de capture Wireshark.
@@ -475,6 +527,8 @@ Utiliser l'option correcte de Snort pour analyser le fichier de capture Wireshar
 
 **Reponse :**  
 
+> Snort analyse le fichier de capture en prennant en compte ses règles, on a déjà tous les paquets donc on peut tout analyser d'un coup au lieu d'analyser tout le temps, les différents paquets qui arrivent.
+
 ---
 
 **Question 18: Est-ce que des alertes sont aussi enregistrées dans le fichier d'alertes?**
@@ -483,6 +537,7 @@ Utiliser l'option correcte de Snort pour analyser le fichier de capture Wireshar
 
 **Reponse :**  
 
+> Les alertes vont toujours être enregistrées dans son fichier, en effet snort agit comme s'il écoutait une interface.
 ---
 
 --
@@ -497,6 +552,7 @@ Faire des recherches à propos des outils `fragroute` et `fragtest`.
 
 **Reponse :**  
 
+> En lisant ce qui est dans https://tools.kali.org/information-gathering/fragroute. On peut voir que fragroute va pouvoir intercepter, modifier le traffic réseau qui va vers un hote. Cela se fait par exemple en mettant un delay, en duplicant ou en abandonnant des fragements. On peut aussi jouer sur des réordonnement, des overlaps etc.
 ---
 
 
