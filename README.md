@@ -551,6 +551,7 @@ Faire des recherches à propos des outils `fragroute` et `fragtest`.
 ---
 
 **Reponse :**  
+> Fragtest est contenu dans Fragroute, ces outils permettent de modifier le traffic pour tenter d'éviter un IDS.
 
 > En lisant ce qui est dans https://tools.kali.org/information-gathering/fragroute. On peut voir que fragroute va pouvoir intercepter, modifier le traffic réseau qui va vers un hote. Cela se fait par exemple en mettant un delay, en duplicant ou en abandonnant des fragements. On peut aussi jouer sur des réordonnement, des overlaps etc.
 ---
