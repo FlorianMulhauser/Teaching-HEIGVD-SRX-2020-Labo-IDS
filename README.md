@@ -1,5 +1,7 @@
 # Teaching-HEIGVD-SRX-2020-Laboratoire-IDS
 
+Authors : Dupont Maxime, Florian Mulhauser
+
 **Ce travail de laboratoire est à faire en équipes de 2 personnes** (oui... en remote...). Je vous laisse vous débrouiller ;-)
 
 **ATTENTION : Commencez par créer un Fork de ce repo et travaillez sur votre fork.**
@@ -280,6 +282,8 @@ Vous pouvez aussi utiliser des captures Wireshark ou des fichiers snort.log.xxxx
 
 **Réaliser des captures d'écran des exercices suivants et les ajouter à vos réponses.**
 
+> Nous avons rajouté une brève annexe à la fin de ce document veuillez bien y preter attention s'il vous plait.
+
 ### Essayer de répondre à ces questions en quelques mots :
 
 **Question 1: Qu'est ce que signifie les "preprocesseurs" dans le contexte de Snort ?**
@@ -337,8 +341,11 @@ sudo snort -c myrules.rules -i eth0
 
 > On nous affiche le fichier de règles chargés, le directory où sera stocké les logs, les ports utilisés, les patterns matchings.
 
-![](screenshots/Q4.1)
-![](screenshots/Q4.2)
+
+![](screenshots/Q4.1.PNG)
+
+![](screenshots/Q4.2.PNG)
+
 
 
 ---
@@ -348,10 +355,10 @@ Aller à un site web contenant dans son text votre nom ou votre mot clé que vou
 **Question 5: Que voyez-vous sur votre terminal quand vous visitez le site ?**
 
 ---
-![](screenshots/Q4.3)
+![](screenshots/Q4.3.png)
 
 **Reponse :**  
-> Nous voyons plein de `WARNING: No preprocessor configured for policy 0`, c'est parce qu'on n'a pas de préprocesseurs. On peur également voir que des alertes ont été lancées et loggés dans `/var/log/snort/alert` parce que le site contenait bien notre mot clé.
+> Nous voyons plein de `WARNING: No preprocessor configured for policy 0`, c'est parce qu'on n'a pas de préprocesseurs. Cependant rien de supplémentaire, nous auront plus de détails à l'arrêt de snort.
 ---
 
 Arrêter Snort avec `CTRL-C`.
@@ -366,8 +373,8 @@ Arrêter Snort avec `CTRL-C`.
 
 
 
-![](screenshots/Q4.4)
-![](screenshots/Q4.5)
+![](screenshots/Q4.4.png)
+![](screenshots/Q4.5.png)
 ---
 
 
@@ -500,7 +507,7 @@ Essayer d'écrire une règle qui Alerte qu'une tentative de session SSH a été 
 ---
 
 **Reponse :**  
-
+> n/a 
 ---
 
 --
@@ -562,7 +569,7 @@ Faire des recherches à propos des outils `fragroute` et `fragtest`.
 ---
 
 **Reponse :**  
-
+> Fragtest et Fragroute fragmentent, réodornnent ainsi que modifient le traffic afin d'essayer de contourner les règles de l'IDS
 ---
 
 
@@ -571,7 +578,7 @@ Faire des recherches à propos des outils `fragroute` et `fragtest`.
 ---
 
 **Reponse :**  
-
+> Un preprocesseur de snort qui lui permet de contrecarrer la fragmentation des deux outils au-dessus, une manière de se "defendre" ou de palier a une faiblesse.
 ---
 
 
@@ -583,7 +590,7 @@ Reprendre l'exercice de la partie [Trouver votre nom](#trouver-votre-nom-). Essa
 ---
 
 **Reponse :**  
-
+> n/a  ( Nous imaginons que l'evasion des règles est aisée puisque nous n'avons pris aucune mesure particulière pour bloquer ces outils).
 ---
 
 
@@ -595,7 +602,7 @@ Modifier le fichier `myrules.rules` pour que snort utiliser le `Frag3 Preprocess
 ---
 
 **Reponse :**  
-
+> Nous avons eu des problèmes techniques lors de ce labo mais il nous semble probable que l'ajout de ce pré-processeur permet de bloquer l'évasion des règles (donc l'IDS fonctionne correctement).
 ---
 
 
@@ -604,6 +611,7 @@ Modifier le fichier `myrules.rules` pour que snort utiliser le `Frag3 Preprocess
 ---
 
 **Reponse :**  
+> Il sert à analyser les parties non-chiffrées de SSL/TLS. 
 
 ---
 
@@ -613,7 +621,7 @@ Modifier le fichier `myrules.rules` pour que snort utiliser le `Frag3 Preprocess
 ---
 
 **Reponse :**  
-
+> Il permet de detecter et de filtrer la transmission des données sensibles comme les numéros de carte de crédit , les numéros de sécurité sociale ou encore les adresses e-mail.
 ---
 
 ### Conclusions
@@ -624,8 +632,12 @@ Modifier le fichier `myrules.rules` pour que snort utiliser le `Frag3 Preprocess
 ---
 
 **Reponse :**  
-
+> Snort nous semble être un outil très puissant, cependant nous avons rencontré de nombreux problème que nous n'avons pas tous pu régler, il ne semble pas évident à maitriser.
 ---
+
+
+### Annexe Important
+Lors de la réalisation de ce labo nous avons rencontré de nombreux problèmes techniques, tout d'abord avec la VM, puis avec l'outil snort, ce qui a considérablement réduit notre motivation. Plutôt que de nous entêter sur des problèmes que nous n'arrivions pas à régler nous avons décider de nous aider des ressources en ligne du mieux possible pour donner des réponses théoriques et comprendre le fonctionnement et la logique de l'outil présenté. Nous n'avons cependant pu réaliser que très peu de manipulations en elle-mêmes à cause de ces problèmes, voila pourquoi il nous manque de nombreuses captures d'écrans dans ce README. En espérant que les labos suivant se déroulerons mieux pour nous. Merci de votre attention.
 
 
 <sub>This guide draws heavily on http://cs.mvnu.edu/twiki/bin/view/Main/CisLab82014</sub>
