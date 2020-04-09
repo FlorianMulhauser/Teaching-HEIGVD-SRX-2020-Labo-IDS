@@ -496,6 +496,7 @@ Faire des recherches à propos des outils `fragroute` et `fragtest`.
 ---
 
 **Reponse :**  
+> Fragtest est contenu dans Fragroute, ces outils permettent de modifier le traffic pour tenter d'éviter un IDS.
 
 ---
 
